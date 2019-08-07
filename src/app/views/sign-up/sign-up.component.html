@@ -1,0 +1,38 @@
+<ActionBar class="action-bar">
+        <Label class="action-bar-title" style="text-align: center" text="Criar Conta"></Label>
+    </ActionBar>
+<ScrollView>
+    <StackLayout class="page">
+        <StackLayout class="form">
+
+            <StackLayout class="input-field">
+                <Label text="Username: " class="label m-t-5 m-b-5"></Label>
+                <TextField class="input" autocapitalizationType="none" autocorrect="false"></TextField>
+                <StackLayout class="hr-light"></StackLayout>
+            </StackLayout>
+
+            <StackLayout class="input-field">
+                <Label text="Email: " class="label m-t-5 m-b-5"></Label>
+                <TextField class="input" autocapitalizationType="none" keyboardType="email" autocorrect="false">
+                </TextField>
+                <StackLayout class="hr-light"></StackLayout>
+            </StackLayout>
+
+            <StackLayout class="input-field">
+                <Label text="Senha: " class="label m-t-5 m-b-5"></Label>
+                <TextField class="input" secure="true"></TextField>
+                <StackLayout class="hr-light"></StackLayout>
+            </StackLayout>
+
+            <StackLayout class="input-field">
+                <Label text="Confirmação de Senha: " class="label m-t-5 m-b-5"></Label>
+                <TextField class="input" secure="true"></TextField>
+                <StackLayout class="hr-light"></StackLayout>
+            </StackLayout>
+
+            <Button class="btn btn-primary btn-lg" text="Registrar"></Button>
+            <Button class="btn btn-primary btn-outline btn-lg" nsRouterLink="/sign-in" clearHistory="true" text="Login" pageTransition="slideRight"></Button>
+
+        </StackLayout>
+    </StackLayout>
+</ScrollView>
