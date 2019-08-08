@@ -1,3 +1,4 @@
+import { ConfigService } from './shared/services/config.service';
 import { AuthService } from "./shared/services/auth.service";
 import { AuthGuard } from "./shared/guards/auth.guard";
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
@@ -25,7 +26,7 @@ import { AuthInterceptor } from "./shared/interceptors/auth.interceptor";
         AppComponent
     ],
     providers: [
-        AuthGuard, AuthService, {
+        AuthGuard, AuthService, ConfigService, {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
             multi: true

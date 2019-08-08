@@ -1,4 +1,7 @@
 {
+  "android": {
+    "markingMode": "none"
+},
   "nativescript": {
     "id": "org.nativescript.applicationtest",
     "tns-android": {

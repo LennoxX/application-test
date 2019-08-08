@@ -1,3 +1,4 @@
+import { AuthService } from './shared/services/auth.service';
 import { Component, OnInit } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
@@ -15,7 +16,7 @@ export class AppComponent implements OnInit {
     private _activatedUrl: string;
     private _sideDrawerTransition: DrawerTransitionBase;
 
-    constructor(private router: Router, private routerExtensions: RouterExtensions) {
+    constructor(private router: Router, private routerExtensions: RouterExtensions, public authService: AuthService) {
         // Use the component constructor to inject services.
     }
 
@@ -48,7 +49,5 @@ export class AppComponent implements OnInit {
         sideDrawer.closeDrawer();
     }
 
-    getUserName() {
-        return appSettings.getString("username");
-    }
+
 }

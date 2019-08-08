@@ -1,3 +1,4 @@
+import { ConfigService } from "./config.service";
 import { HttpClient } from "@angular/common/http";
 import { Usuario } from "./../models/usuario.model";
 
@@ -6,9 +7,13 @@ import { Token } from "../models/token.model";
 
 export class AuthService {
 
+    constructor(private httpClient: HttpClient,
+                private configService: ConfigService) {
 
-    constructor(private httpClient: HttpClient) {
+    }
 
+    login(usuario: Usuario) {
+        return this.httpClient.post(`${this.configService.getApiPath()}auth/signin`, usuario);
     }
 
     validateToken() {
@@ -17,7 +22,7 @@ export class AuthService {
     }
 
     clearSession() {
-       appSettings.clear();
+        appSettings.clear();
     }
 
     saveSession(token: Token) {

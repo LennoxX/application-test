@@ -16,15 +16,15 @@ import { Token } from "../../shared/models/token.model";
     templateUrl: "./sign-in.component.html"
 })
 
-export class SignInComponent implements OnInit{
+export class SignInComponent implements OnInit {
 
     signInForm: FormGroup;
     usuario: Usuario;
     isBusy = false;
     constructor(private http: HttpClient,
-                private router: Router,
-                private formBuilder: FormBuilder,
-                private authService: AuthService) {
+        private router: Router,
+        private formBuilder: FormBuilder,
+        private authService: AuthService) {
 
     }
 
@@ -34,7 +34,6 @@ export class SignInComponent implements OnInit{
             username: [null, Validators.required],
             password: [null, Validators.required]
         });
-        console.log("Token ", this.authService.getToken());
     }
 
     login() {
@@ -42,12 +41,14 @@ export class SignInComponent implements OnInit{
         this.isBusy = true;
         this.usuario = Object.assign(new Usuario(), this.signInForm.value);
         this.signInForm.reset();
-        this.http.post("http://192.168.0.59:8080/auth/signin", this.usuario)
+
+        this.authService.login(this.usuario)
             .subscribe((result: Token) => {
                 this.isBusy = false;
                 this.authService.saveSession(result);
                 this.router.navigate(["home"]);
             }, (error) => {
+                console.log(error);
                 this.isBusy = false;
                 Toast.makeText("Usuário ou Senha inválidos").show();
             });
