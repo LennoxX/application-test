@@ -1,38 +1,88 @@
 <ActionBar class="action-bar">
-        <Label class="action-bar-title" style="text-align: center" text="Criar Conta"></Label>
-    </ActionBar>
-<ScrollView>
-    <StackLayout class="page">
-        <StackLayout class="form">
+    <Label class="action-bar-title" style="text-align: center" text="Criar Conta"></Label>
+</ActionBar>
 
-            <StackLayout class="input-field">
-                <Label text="Username: " class="label m-t-5 m-b-5"></Label>
-                <TextField class="input" autocapitalizationType="none" autocorrect="false"></TextField>
-                <StackLayout class="hr-light"></StackLayout>
+<ScrollView >
+    <StackLayout class="page form m-5-10" [formGroup]="signUpForm">
+        <!--CAMPO NOME-->
+        <StackLayout class="input-field">
+            <Label text="Nome: " class="label m-t-5 m-b-5"
+                [style.color]="signUpForm.controls['nome'].invalid && signUpForm.controls['nome'].dirty ? '#d9534f' : ''"></Label>
+            <TextField class="input" formControlName="nome"></TextField>
+            <StackLayout class="hr-light"
+                [ngClass]="{ 'bg-danger': signUpForm.controls['nome'].invalid && signUpForm.controls['nome'].dirty}">
             </StackLayout>
-
-            <StackLayout class="input-field">
-                <Label text="Email: " class="label m-t-5 m-b-5"></Label>
-                <TextField class="input" autocapitalizationType="none" keyboardType="email" autocorrect="false">
-                </TextField>
-                <StackLayout class="hr-light"></StackLayout>
-            </StackLayout>
-
-            <StackLayout class="input-field">
-                <Label text="Senha: " class="label m-t-5 m-b-5"></Label>
-                <TextField class="input" secure="true"></TextField>
-                <StackLayout class="hr-light"></StackLayout>
-            </StackLayout>
-
-            <StackLayout class="input-field">
-                <Label text="Confirmação de Senha: " class="label m-t-5 m-b-5"></Label>
-                <TextField class="input" secure="true"></TextField>
-                <StackLayout class="hr-light"></StackLayout>
-            </StackLayout>
-
-            <Button class="btn btn-primary btn-lg" text="Registrar"></Button>
-            <Button class="btn btn-primary btn-outline btn-lg" nsRouterLink="/sign-in" clearHistory="true" text="Login" pageTransition="slideRight"></Button>
-
         </StackLayout>
+        <StackLayout class="input-field text-danger"
+            *ngIf="signUpForm.controls['nome'].errors && signUpForm.controls['nome'].dirty">
+            <Label *ngIf="signUpForm.controls['nome'].errors.required" text="Campo Obrigatório"></Label>
+            <Label *ngIf="signUpForm.controls['nome'].errors.minlength" text="Mínimo 5 Caracteres"></Label>
+        </StackLayout>
+
+        <!--CAMPO EMAIL-->
+        <StackLayout class="input-field">
+            <Label text="Email: " class="label m-t-5 m-b-5"
+                [style.color]="signUpForm.controls['email'].invalid && signUpForm.controls['email'].dirty ? '#d9534f' : ''"></Label>
+            <TextField class="input" autocapitalizationType="none" keyboardType="email" autocorrect="false"
+                formControlName="email">
+            </TextField>
+            <StackLayout class="hr-light"
+                [ngClass]="{ 'bg-danger': signUpForm.controls['email'].invalid && signUpForm.controls['email'].dirty}">
+            </StackLayout>
+        </StackLayout>
+        <StackLayout class="input-field text-danger"
+            *ngIf="signUpForm.controls['email'].errors && signUpForm.controls['email'].dirty">
+            <Label *ngIf="signUpForm.controls['email'].errors.required" text="Campo Obrigatório"></Label>
+            <Label *ngIf="signUpForm.controls['email'].errors.email" text="Email Inválido"></Label>
+        </StackLayout>
+
+        <StackLayout class="input-field">
+            <Label text="Username: " class="label m-t-5 m-b-5"
+                [style.color]="signUpForm.controls['username'].invalid && signUpForm.controls['username'].dirty ? '#d9534f' : ''"></Label>
+            <TextField class="input" autocapitalizationType="none" autocorrect="false" formControlName="username">
+            </TextField>
+            <StackLayout class="hr-light"
+                [ngClass]="{ 'bg-danger': signUpForm.controls['username'].invalid && signUpForm.controls['username'].dirty}">
+            </StackLayout>
+        </StackLayout>
+        <StackLayout class="input-field text-danger"
+            *ngIf="signUpForm.controls['username'].errors && signUpForm.controls['username'].dirty">
+            <Label *ngIf="signUpForm.controls['username'].errors.required" text="Campo Obrigatório"></Label>
+            <Label *ngIf="signUpForm.controls['username'].errors.minlength" text="Mínimo 5 Caracteres"></Label>
+        </StackLayout>
+
+        <StackLayout class="input-field">
+            <Label text="Senha: " class="label m-t-5 m-b-5"
+                [style.color]="signUpForm.controls['password'].invalid && signUpForm.controls['password'].dirty ? '#d9534f' : ''"></Label>
+            <TextField class="input" secure="true" formControlName="password"></TextField>
+            <StackLayout class="hr-light"
+                [ngClass]="{ 'bg-danger': signUpForm.controls['password'].invalid && signUpForm.controls['password'].dirty}">
+            </StackLayout>
+        </StackLayout>
+        <StackLayout class="input-field text-danger"
+            *ngIf="signUpForm.controls['password'].errors && signUpForm.controls['password'].dirty">
+            <Label *ngIf="signUpForm.controls['password'].errors.required" text="Campo Obrigatório"></Label>
+            <Label *ngIf="signUpForm.controls['password'].errors.minlength" text="Mínimo 5 Caracteres"></Label>
+        </StackLayout>
+
+        <StackLayout class="input-field">
+            <Label text="Confirmação de Senha: " class="label m-t-5 m-b-5"
+                [style.color]="signUpForm.controls['passwordConfirm'].invalid && signUpForm.controls['passwordConfirm'].dirty ? '#d9534f' : ''"></Label>
+            <TextField class="input" secure="true" formControlName="passwordConfirm"></TextField>
+            <StackLayout class="hr-light"
+                [ngClass]="{ 'bg-danger': signUpForm.controls['passwordConfirm'].invalid && signUpForm.controls['passwordConfirm'].dirty}">
+            </StackLayout>
+        </StackLayout>
+        <StackLayout class="input-field text-danger"
+            *ngIf="signUpForm.controls['passwordConfirm'].errors && signUpForm.controls['passwordConfirm'].dirty">
+            <Label *ngIf="signUpForm.controls['passwordConfirm'].errors.required" text="Campo Obrigatório"></Label>
+            <Label *ngIf="signUpForm.controls['passwordConfirm'].errors.notSame" text="Mínimo 5 Caracteres"></Label>
+        </StackLayout>
+
+        <Button [isEnabled]="signUpForm.valid" class="btn btn-primary btn-lg" text="Registrar"
+            (tap)="register()"></Button>
+        <Button class="btn btn-primary btn-outline btn-lg" nsRouterLink="/sign-in" clearHistory="true" text="Login"
+            pageTransition="slideRight"></Button>
+
     </StackLayout>
 </ScrollView>

@@ -17,7 +17,7 @@ export class AuthService {
     }
 
     validateToken() {
-        return this.httpClient.post("http://192.168.0.59:8080/auth/valid/token", this.getToken());
+        return this.httpClient.post("http://192.168.0.25:8080/auth/valid/token", this.getToken());
 
     }
 
@@ -53,5 +53,9 @@ export class AuthService {
 
     getUsername() {
         return appSettings.getString("username");
+    }
+
+    register(usuario: Usuario) {
+        return this.httpClient.post(`${this.configService.getApiPath()}api/usuario`, usuario);
     }
 }

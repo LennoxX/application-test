@@ -1,9 +1,9 @@
+import { RouterExtensions } from 'nativescript-angular/router';
 import { AuthService } from "./../../shared/services/auth.service";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 import { HttpClient } from "@angular/common/http";
-import { Router } from "@angular/router";
 import * as Toast from "nativescript-toast";
 import * as appSettings from "tns-core-modules/application-settings";
 import "rxjs/Rx";
@@ -22,9 +22,9 @@ export class SignInComponent implements OnInit {
     usuario: Usuario;
     isBusy = false;
     constructor(private http: HttpClient,
-        private router: Router,
-        private formBuilder: FormBuilder,
-        private authService: AuthService) {
+                private router: RouterExtensions,
+                private formBuilder: FormBuilder,
+                private authService: AuthService) {
 
     }
 

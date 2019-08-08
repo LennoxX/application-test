@@ -1,7 +1,8 @@
+import { RouterExtensions } from 'nativescript-angular/router';
 import { HttpClient } from "@angular/common/http";
 import { AuthService } from "./../services/auth.service";
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from "@angular/router";
 
 @Injectable({
     providedIn: "root"
@@ -9,7 +10,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 
 export class AuthGuard implements CanActivate {
 
-    constructor(private router: Router, private authService: AuthService) {
+    constructor(private router: RouterExtensions, private authService: AuthService) {
 
     }
 
